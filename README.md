@@ -1,5 +1,5 @@
 ## 🚀 Live Demo
-🔗 https://asikhia.github.io/HTMl/
+🔗 https://asikhia.github.io/HTMl-ptofile-page/
 Hi, I’m Tamara 👋
 
 I’m on a journey from curiosity to competence — learning how to turn ideas into working software, one commit at a time.
