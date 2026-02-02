@@ -82,3 +82,69 @@ body {
   .layout { flex-direction: column; }
   .site-header { min-height: 90px; }
 }
+/* ...existing code... */
+
+/* Responsive navigation bar (desktop + mobile) */
+.site-nav { width:100%; display:flex; justify-content:center; margin-bottom:1rem; }
+.site-nav .nav-inner { width:100%; max-width:1100px; display:flex; align-items:center; gap:var(--gap); padding:0 .5rem; position:relative; }
+
+/* Brand */
+.nav-brand { font-weight:700; color:var(--accent); text-decoration:none; font-size:1.05rem; }
+
+/* Desktop links */
+.nav-links { list-style:none; margin:0; padding:0; display:flex; gap:0.75rem; align-items:center; }
+.nav-links a { text-decoration:none; color:var(--muted); padding:.45rem .65rem; border-radius:6px; font-weight:600; transition: background .15s, color .15s; }
+.nav-links a:hover, .nav-links a:focus { color:var(--accent); background:rgba(43,111,191,0.06); outline:none; }
+
+/* Mobile toggle (checkbox + label pattern) */
+.nav-toggle { display:none; }
+.nav-toggle-btn { display:none; border: none; background:transparent; cursor:pointer; padding:.2rem; }
+
+/* Mobile layout */
+@media (max-width: 760px) {
+  .nav-inner { justify-content:space-between; }
+  .nav-toggle-btn { display:flex; align-items:center; justify-content:center; width:40px; height:40px; border-radius:6px; border:1px solid transparent; }
+
+  /* Hamburger lines */
+  .nav-toggle-btn span,
+  .nav-toggle-btn span::before,
+  .nav-toggle-btn span::after {
+    display:block;
+    background:#111827;
+    height:2px;
+    width:20px;
+    border-radius:2px;
+    position:relative;
+    transition: transform .2s ease, opacity .2s ease;
+  }
+  .nav-toggle-btn span::before,
+  .nav-toggle-btn span::after { content:""; position:absolute; left:0; }
+  .nav-toggle-btn span::before { top:-6px; }
+  .nav-toggle-btn span::after { top:6px; }
+
+  /* Dropdown menu */
+  .nav-links {
+    position:absolute;
+    left:0;
+    right:0;
+    top:calc(100% + 8px);
+    margin:0 1rem;
+    background:var(--card-bg);
+    border-radius:8px;
+    box-shadow:0 8px 24px rgba(16,24,40,0.08);
+    flex-direction:column;
+    gap:0.25rem;
+    padding:.65rem;
+    overflow:hidden;
+    max-height:0;
+    transition:max-height .25s ease;
+  }
+  .nav-links li { width:100%; }
+  .nav-links a { display:block; padding:.75rem; width:100%; color:#111827; }
+
+  /* Toggle active state */
+  .nav-toggle:checked + .nav-toggle-btn span { transform: rotate(45deg); }
+  .nav-toggle:checked + .nav-toggle-btn span::before { transform: rotate(90deg); top:0; }
+  .nav-toggle:checked + .nav-toggle-btn span::after { opacity:0; }
+  .nav-toggle:checked + .nav-toggle-btn + .nav-links { max-height:420px; }
+}
